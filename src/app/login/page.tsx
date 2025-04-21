@@ -1,13 +1,10 @@
 // app/login/page.tsx
-import LoginForm from "@/components/LoginForm";
-import Navbar from "@/components/Navbar";
-
+import LoginForm from "@/components/form/LoginForm";
 export default function LoginPage() {
   return (
     <>
-      <main className="flex justify-center items-center h-[80vh]">
+      
         <LoginForm />
-      </main>
     </>
   );
 }
