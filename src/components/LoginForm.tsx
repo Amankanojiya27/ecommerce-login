@@ -1,16 +1,43 @@
 // components/LoginForm.tsx
 "use client";
 
+import { useRouter } from "next/navigation"; // ✅ Correct for App Router
 import { useState } from "react";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 🧠 Yahan backend login logic plug karni hai (API call, validation, etc.)
-    console.log("Login attempt:", { email, password });
+    setError("");
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const text = await res.text();
+
+      const data = text ? JSON.parse(text) : {};
+
+      if (res.ok) {
+        // ✅ Token mil gaya, store in localStorage
+        localStorage.setItem("token", data.token);
+        console.log("Login successful:", data);
+
+        // Redirect to dashboard
+        router.push("/");
+      } else {
+        setError("Login failed. Check credentials.");
+      }
+    } catch (err) {
+      console.error("❌ Login failed:", err);
+      setError("Login failed. Try again.");
+    }
   };
 
   return (
