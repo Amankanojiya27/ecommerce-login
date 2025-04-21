@@ -2,12 +2,12 @@
 import { NextResponse } from "next/server";
 
 const myUser = {
-  email: "aman@gamil.com",
+  email: "aman@gmail.com",
   password: "123",
   name: "aman",
 };
 
-export async function POST(req: Request) {  // Note: use `post` (lowercase)
+export async function POST(req: Request) {
   const body = await req.json();
   const { email, password } = body;
 

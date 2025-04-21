@@ -1,7 +1,7 @@
 // components/LoginForm.tsx
 "use client";
 
-import { useRouter } from "next/navigation"; // ✅ Correct for App Router
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
@@ -30,7 +30,7 @@ export default function LoginForm() {
         console.log("Login successful:", data);
 
         // Redirect to dashboard
-        router.push("/");
+        router.push("/dashboard");
       } else {
         setError("Login failed. Check credentials.");
       }
