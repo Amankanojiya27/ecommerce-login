@@ -40,7 +40,7 @@ export default function LoginForm() {
 
       <button
         type="submit"
-        className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        className="bg-indigo-400 text-white py-2 rounded hover:bg-indigo-700"
       >
         Login
       </button>
